@@ -1,6 +1,8 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.item.Badge
+import org.example.item.MonsterKube
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -184,6 +186,13 @@ var route3 = Zone(
     especesMonstres = mutableListOf(especeAquamy, especeLaoumi)
 )
 
+var monsterKube = MonsterKube(
+    id = 1,
+    nom = "MonsterKube",
+    description = "Un cube qui permet de capturer les monstres sauvages.",
+    chanceCapture = 50.0
+)
+
 fun main() {
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1
@@ -194,7 +203,11 @@ fun main() {
     val individu3 = IndividuMonstre(3, "Aquamy", especeAquamy, joueur, 1500.0)
     individu1.afficheDetail()
     individu1.attaquer(individu2)
-    individu1.renommer()
-    individu1.afficheDetail()
+//    individu1.renommer()
+//    individu1.afficheDetail()
     println("${individu3.nom} : niveau ${individu3.niveau}")
+
+    // Badge temporaire pour vérifier l'héritage (à mettre un point d'arrêt ici)
+    val badgeTest = Badge(1, "Badge Roche", "Décerné par le champion de la ligue.", rival)
+    println("${badgeTest.nom} : ${badgeTest.description} (champion : ${badgeTest.champion.nom})")
 }

@@ -1,5 +1,6 @@
 package org.example.dresseur
 
+import org.example.item.Item
 import org.example.monstre.IndividuMonstre
 
 /**
@@ -13,6 +14,7 @@ import org.example.monstre.IndividuMonstre
      * @property argents La quantité d'argent en possession de l'entraîneur.
      * @property equipeMonstre La liste des monstres de l'équipe de l'entraîneur.
      * @property boiteMonstre La liste des monstres stockés dans la boîte de l'entraîneur.
+     * @property sacAItems La liste des objets contenus dans le sac de l'entraîneur.
 
      */
     class Entraineur(
@@ -21,7 +23,7 @@ import org.example.monstre.IndividuMonstre
         var argents:Int,
         var equipeMonstre: MutableList<IndividuMonstre> = mutableListOf(),
         var boiteMonstre: MutableList<IndividuMonstre> = mutableListOf(),
-        //TODO sacAKube
+        var sacAItems: MutableList<Item> = mutableListOf(),
     ) {
         /**
          * Affiche les détails de l'entraîneur, y compris son nom et la quantité d'argent en sa possession.
