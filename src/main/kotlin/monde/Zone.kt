@@ -1,7 +1,10 @@
 package org.example.monde
 
+import org.example.combat.CombatMonstre
+import org.example.dresseur.Entraineur
 import org.example.monstre.EspeceMonstre
-import java.time.LocalDateTime
+import org.example.monstre.IndividuMonstre
+import kotlin.random.Random
 
 /**
  * Représente une zone dans le contexte du jeu.
@@ -25,6 +28,32 @@ class Zone(
     var zoneSuivante: Zone? = null,
     var zonePrecedante: Zone? = null,
 ) {
-    //TODO faire la méthode genereMonstre()
-    //TODO faire la méthode rencontreMonstre()
+    /**
+     * Génère un monstre sauvage appartenant à l'une des espèces de la zone, choisie au hasard.
+     * Son expérience initiale vaut l'expérience de la zone, modifiée aléatoirement de ±20%.
+     *
+     * @return Le nouvel individu monstre sauvage généré, sans entraîneur.
+     */
+    fun genereMonstre(): IndividuMonstre {
+        val espece = especesMonstres.random()
+        val exp = expZone * Random.nextDouble(0.8, 1.2)
+        return IndividuMonstre(0, espece.nom, espece, null, exp)
+    }
+
+    /**
+     * Démarre un combat entre un monstre sauvage généré (grâce à [genereMonstre]) et le premier
+     * monstre de l'équipe du joueur qui a des PV > 0.
+     *
+     * @param joueur L'entraîneur qui affronte le monstre sauvage.
+     */
+    fun rencontreMonstre(joueur: Entraineur) {
+        val monstreSauvage = genereMonstre()
+        val premierPokemon = joueur.equipeMonstre.firstOrNull { it.pv > 0 }
+        if (premierPokemon == null) {
+            println("Vous n'avez aucun monstre en état de combattre !")
+            return
+        }
+        val combat = CombatMonstre(premierPokemon, monstreSauvage)
+        combat.lancerCombat()
+    }
 }

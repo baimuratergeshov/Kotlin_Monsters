@@ -1,11 +1,10 @@
 package org.example
 
 import org.example.dresseur.Entraineur
-import org.example.item.Badge
 import org.example.item.MonsterKube
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
-import org.example.monstre.IndividuMonstre
+import org.example.partie.nouvellePartie
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -197,17 +196,11 @@ fun main() {
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1
     route2.zoneSuivante = route3
+    route3.zonePrecedante = route2
 
-    val individu1 = IndividuMonstre(1, "Springleaf", especeSpringleaf, joueur, 1500.0)
-    val individu2 = IndividuMonstre(2, "Flamkip", especeFlamkip, joueur, 1500.0)
-    val individu3 = IndividuMonstre(3, "Aquamy", especeAquamy, joueur, 1500.0)
-    individu1.afficheDetail()
-    individu1.attaquer(individu2)
-//    individu1.renommer()
-//    individu1.afficheDetail()
-    println("${individu3.nom} : niveau ${individu3.niveau}")
+    joueur.sacAItems.add(monsterKube)
 
-    // Badge temporaire pour vérifier l'héritage (à mettre un point d'arrêt ici)
-    val badgeTest = Badge(1, "Badge Roche", "Décerné par le champion de la ligue.", rival)
-    println("${badgeTest.nom} : ${badgeTest.description} (champion : ${badgeTest.champion.nom})")
+    val partie = nouvellePartie(joueur, route1)
+    partie.choixStarter()
+    partie.jouer()
 }
