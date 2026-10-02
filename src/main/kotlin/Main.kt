@@ -29,6 +29,7 @@ fun changeCouleur(message: String, couleur:String=""): String {
         "magenta" -> "\u001B[35m"
         "cyan" -> "\u001B[36m"
         "blanc" -> "\u001B[37m"
+        "marron" -> "\u001B[38;5;94m"
         else -> "" // pas de couleur si non reconnu
     }
     return "$codeCouleur$message$reset"

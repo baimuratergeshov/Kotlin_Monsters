@@ -54,6 +54,6 @@ class Zone(
             return
         }
         val combat = CombatMonstre(premierPokemon, monstreSauvage)
-        combat.lancerCombat()
+        combat.lanceCombat()
     }
 }

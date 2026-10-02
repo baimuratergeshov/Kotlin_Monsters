@@ -208,7 +208,7 @@ class CombatMonstre(
      * Lance et gère le combat complet, round par round, jusqu'à la victoire, la défaite ou la fuite.
      * Si le joueur perd (tous ses monstres K.O.), son équipe retrouve tous ses PV à la fin du combat.
      */
-    fun lancerCombat() {
+    fun lanceCombat() {
         while (!gameOver() && !joueurGagne()) {
             if (!jouer()) {
                 return
